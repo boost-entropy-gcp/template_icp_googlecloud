@@ -1,5 +1,6 @@
 module "gather_output" {
-    source 						= "git::https://github.com/IBM-CAMHub-Development/template_icp_modules.git?ref=2.3//public_cloud_output"
+	dependsOn					= true
+    source 						= "git::https://github.com/IBM-CAMHub-Development/template_icp_modules.git?ref=3.2.1//public_cloud_output"
 	cluster_CA_domain 			= "${var.deployment}.icp"
 	icp_master 					= "${list(google_compute_instance.icp-master.network_interface.0.access_config.0.assigned_nat_ip)}"
 	ssh_user 					= "${var.ssh_user}"
