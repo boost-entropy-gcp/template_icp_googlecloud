@@ -63,11 +63,11 @@ module "icpprovision" {
 
   source = "git::https://github.com/IBM-CAMHub-Development/template_icp_modules.git?ref=3.2.1//public_cloud"
 
-    dependsOn = true
-
     # Provide IP addresses for boot, master, mgmt, va, proxy and workers
     boot-node     = "${google_compute_instance.icp-master.network_interface.0.network_ip}"
     bastion_host  = "${google_compute_instance.icp-master.network_interface.0.access_config.0.nat_ip}"
+
+    image_load_finished = true
 
     #in support of workers scaling
     icp-worker = "${slice(concat(google_compute_instance.icp-worker.*.network_interface.0.network_ip,
